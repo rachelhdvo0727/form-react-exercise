@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add contact form</title>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Friend List</title>
+        <style>
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          body {
+            padding: 5vw;
+          }
+          h1,
+          h2,
+          h3,
+          p,
+          label {
+            font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+              "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+          }
+          main {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 2vw;
+            margin-top: 5vw;
+          }
+          form {
+            border: 0.2em solid black;
+            border-radius: 2vw;
+            width: 50vw;
+            padding: 2.5vw;
+          }
+          label {
+            font-size: 0.8rem;
+          }
+          input + p {
+            display: none;
+          }
+          .pagetitle {
+            text-align: center;
+          }
+          #onePerson {
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: space-around;
+            margin: 3vw;
+            padding: 3vw;
+            background-color: lavender;
+            box-shadow: 0.2em 0.2em 0.8em lightgrey;
+          }
+          .deleteme {
+            align-self: flex-end;
+            width: 15vw;
+          }
+          .fullname {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+          }
+          .first,
+          .last {
+            margin-right: 1vw;
+          }
+          .age,
+          .email {
+            align-self: center;
+            margin: 2vw;
+          }
+          .add {
+            position: relative;
+            left: 70vw;
+            top: 2vw;
+          }
+          .wrap {
+            display: flex;
+            flex-flow: column wrap;
+            margin-top: 2vw;
+          }
+          .wrap2 {
+            display: flex;
+            flex-flow: row wrap;
+            margin-top: 2vw;
+          }
+          .submit {
+            margin-top: 2vw;
+          }
+          #foodLover {
+            padding-right: 2vw;
+          }
+          .invalid {
+            border: 2px solid orange;
+          }
+          .hidden {
+            display: none;
+          }
+          input.invalid + p {
+            display: block;
+          }
+          /* #fstname:invalid:required,
+      #lstname:invalid:required,
+      #email:invalid, */
+          @media screen and (min-width: 800px) {
+            form {
+              width: 30vw;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <h1 class="pagetitle">Friend List</h1>
+        <button class="add">Add New Friend</button>
+        <form action="">
+          <h2>Add a new friend</h2>
+          <div class="f_name wrap">
+            <label for="fstname">First name</label><br /><br />
+            <input type="text" name="fstname" id="fstname" required />
+            <p>Please let me know your first name</p>
+          </div>
+          <div class="l_name wrap">
+            <label for="lstname">Last name</label><br /><br />
+            <input type="text" name="lstname" id="lstname" required />
+            <p>Last name please!</p>
+          </div>
+          <div class="wrap">
+            <label for="age">Age</label>
+            <input type="text" name="age" />
+          </div>
+          <div class="wrap">
+            <label for="dob">Date of Birth</label>
+            <input type="date" name="dob" id="dob" />
+          </div>
+          <div class="wrap2">
+            <label for="unknownDOB">Unknown DOB</label><br />
+            <input type="checkbox" name="unknownDOB" id="unknownDOB" />
+          </div>
+          <div class="wrap">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required />
+            <p>Email please!</p>
+          </div>
+          <div class="wrap2">
+            <label for="foodLover">Food Lover</label><br />
+            <input type="checkbox" name="foodLover" id="foodLover" required />
+            <p class="hidden">Please select this box</p>
+          </div>
+          <button type="submit" class="submit" data-action="delete" data-id>
+            Submit
+          </button>
+        </form>
+        <main></main>
+        <template>
+          <article id="onePerson">
+            <div class="fullname">
+              <h2 class="first"></h2>
+              <h2 class="last"></h2>
+            </div>
+            <p class="age"></p>
+            <p class="email"></p>
+            <button class="deleteme" data-id="" data-action="delete">
+              Delete Me
+            </button>
+          </article>
+        </template>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", start);
+
+          const endpoint =
+            "https://frontendspring20-e4cd.restdb.io/rest/friends";
+          const apiKey = "5e956ffd436377171a0c230f";
+          const form = document.querySelector("form");
+          const pattern = document.querySelector("template").content;
+          const elms = form.elements;
+          const formElms = form.querySelectorAll("input");
+          const checkBxs = [...form.querySelectorAll(`[name=foodLover]`)];
+          const checked = checkBxs.filter((elm) => elm.checked);
+          const errorContainerMsg = form.querySelector("#foodLover + p");
+          let validForm = true;
+          window.form = form;
+          window.elements = elms;
+
+          function start() {
+            elms.unknownDOB.addEventListener("click", (evt) => {
+              //elms.dob.setAttribute("disabled", true);
+              elms.dob.disabled = !elms.dob.disabled;
+            });
+            // elms.fstname.addEventListener("keyup", (evt) => {
+            //   document.querySelector("form > h2").textContent = evt.target.value;
+            // });
+            form.setAttribute("novalidate", true);
+            form.addEventListener("submit", (evt) => {
+              evt.preventDefault(); //turn off validation on submit
+              //form.email.reportValidity(); //turn on validation on submit
+
+              formElms.forEach((elm) => {
+                elm.classList.remove("invalid");
+              });
+
+              if (checked.length === 0) {
+                validForm = false;
+                errorContainerMsg.classList.remove("hidden");
+              } else {
+                errorContainerMsg.classList.add("hidden");
+              }
+
+              if (form.checkValidity() && validForm) {
+                //send data
+                post({
+                  first_name: elms.fstname.value,
+                  last_name: elms.lstname.value,
+                  age: elms.age.value,
+                  email: elms.email.value,
+                });
+                form.reset();
+              } else {
+                //loop validity
+                formElms.forEach((elm) => {
+                  elm.classList.remove("invalid");
+                  if (!elm.checkValidity()) {
+                    elm.classList.add("invalid");
+                  }
+                });
+
+                // if (!elms.fstname.checkValidity()) {
+                //   const err = elms.fstname.validity;
+                //   if (err.valueMissing) {
+                //     //show error for first name
+                //     console.log("please let me know your name");
+                //   }
+                // }
+              }
+            });
+            get();
+            document.querySelector(".add").addEventListener("click", () => {
+              const data = {
+                first_name: "Veronika",
+                last_name: "Petersen",
+                age: 26,
+              };
+              post(data);
+            });
+          }
+          function get() {
+            document.querySelector("main").innerHTML = "";
+            fetch(endpoint, {
+              method: "get",
+              headers: {
+                accept: "application/json",
+                "x-apikey": apiKey,
+                "cache-control": "no-cache",
+              },
+            })
+              .then((e) => e.json())
+              .then((data) => data.forEach(showFriends));
+          }
+
+          function showData(e) {
+            e.forEach(showFriends);
+          }
+
+          function showFriends(friend) {
+            const display = document.querySelector("main");
+            const clone = pattern.cloneNode(true);
+            clone.querySelector(".first").textContent = friend.first_name;
+            clone.querySelector(".last").textContent = friend.last_name;
+            clone.querySelector(".email").textContent = friend.email;
+            clone.querySelector(".age").textContent = friend.age;
+            //clone.querySelector("button").dataset.id = friend._id;
+            clone
+              .querySelectorAll(`article, button[data-action="delete"]`)
+              .forEach((elm) => (elm.dataset.id = friend._id));
+            clone
+              .querySelector(`[data-action="delete"]`)
+              .addEventListener("click", (elm) => deleteAFriend(friend._id));
+            display.appendChild(clone);
+          }
+          function post(data) {
+            const postData = JSON.stringify(data);
+            fetch(endpoint, {
+              method: "post",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                "x-apikey": apiKey,
+                "cache-control": "no-cache",
+              },
+              body: postData,
+            })
+              .then((res) => res.json())
+              .then((data) => showFriends(data));
+          }
+
+          function deleteAFriend(id) {
+            document.querySelector(`article[data-id="${id}"]`).remove();
+            fetch(`${endpoint}/${id}`, {
+              method: "delete",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                "x-apikey": apiKey,
+                "cache-control": "no-cache",
+              },
+            })
+              .then((res) => res.json())
+              .then((data) => {});
+          }
+        </script>
+      </body>
+    </html>
+  </body>
+</html>

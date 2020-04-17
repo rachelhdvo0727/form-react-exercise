@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GET method</title>
+  </head>
+  <body>
+    <main></main>
+
+    <template>
+      <h1 class="first"></h1>
+      <h2 class="last"></h2>
+      <p class="age"></p>
+    </template>
+    <script>
+      document.addEventListener("DOMContentLoaded", start);
+      function start() {
+        fetch("https://frontendspring20-e4cd.restdb.io/rest/friends?max=10", {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "x-apikey": "5e956ffd436377171a0c230f",
+            "cache-control": "no-cache",
+          },
+        })
+          .then((e) => e.json())
+          .then(showData);
+      }
+      function showData(e) {
+        e.forEach(showFriends);
+      }
+
+      function showFriends(friend) {
+        const pattern = document.querySelector("template").content;
+        const display = document.querySelector("main");
+        const clone = pattern.cloneNode(true);
+        clone.querySelector(".first").textContent = friend.first_name;
+        clone.querySelector(".last").textContent = friend.last_name;
+        clone.querySelector(".age").textContent = friend.age;
+        display.appendChild(clone);
+      }
+    </script>
+  </body>
+</html>

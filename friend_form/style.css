@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  padding: 5vw;
+}
+h1,
+h2,
+h3,
+p,
+label,
+legend {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+main {
+  --gap: 2px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(clamp(30% - var(--gap), 350px, 100%), 1fr)
+  );
+  gap: var(--gap);
+  margin-top: 5vw;
+}
+form {
+  --width: 30vw;
+  border: 0.2em solid black;
+  border-radius: 2vw;
+  width: calc(100% - var(--width));
+  padding: 2.5vw;
+  position: absolute;
+  background-color: lemonchiffon;
+  left: 14vw;
+  top: 26vw;
+  z-index: 9999;
+}
+label {
+  font-size: 0.8rem;
+}
+input + p {
+  display: none;
+  font-size: 0.6rem;
+}
+.pagetitle {
+  text-align: center;
+}
+#onePerson {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  margin: 3vw;
+  padding: 3vw;
+  background-color: lavender;
+  box-shadow: 0.2em 0.2em 0.8em lightgrey;
+}
+.deleteme {
+  align-self: flex-end;
+  width: 15vw;
+}
+.fullname {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.first,
+.last {
+  margin-right: 1vw;
+}
+.age,
+.email {
+  align-self: center;
+  margin: 2vw;
+}
+.add {
+  position: relative;
+  left: 70vw;
+  top: 2vw;
+}
+.wrap {
+  display: flex;
+  flex-flow: column wrap;
+  margin-top: 2vw;
+}
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 3vw;
+}
+button {
+  margin-top: 1.5vw;
+}
+.invalid {
+  border: 2px solid orange;
+}
+.hidden {
+  display: none;
+}
+.blurBg {
+  filter: blur(2.5vw);
+}
+input.invalid + p {
+  display: block;
+}
+@media screen and (min-width: 1000px) {
+  form {
+    top: 15vw;
+    left: 30vw;
+    --width: 64vw;
+  }
+  label {
+    font-size: 1.2rem;
+  }
+  input + p {
+    font-size: 0.8rem;
+  }
+  fieldset.container > div:nth-child(2) {
+    margin-top: 0;
+  }
+  .container {
+    padding: 1vw;
+  }
+  fieldset,
+  .wrap {
+    margin-top: 1vw;
+  }
+  form > div:nth-child(6) {
+    padding: 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  form {
+    top: 13vw;
+    left: 35vw;
+    --width: 69vw;
+  }
+}

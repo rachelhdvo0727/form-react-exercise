@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #address,
+      #toppings {
+        display: flex;
+        flex-flow: column wrap;
+      }
+      fieldset {
+        margin-top: 3vw;
+      }
+    </style>
+    <title>Pizza form</title>
+  </head>
+  <body>
+    <form action="">
+      <h1>Hawaiian pizza</h1>
+      <fieldset>
+        <legend>Size</legend>
+        <input type="radio" name="size" id="normal" />
+        <label for="normal">Normal</label>
+        <input type="radio" name="size" id="family" />
+        <label for="family">Family</label>
+      </fieldset>
+      <fieldset id="toppings">
+        <legend>Toppings</legend>
+        <div class="wrap">
+          <input type="checkbox" name="cheese" id="cheese" />
+          <label for="cheese">Cheese</label>
+        </div>
+        <div class="wrap">
+          <input type="checkbox" name="peperoni" id="peperoni" />
+          <label for="peperoni">Peperoni</label>
+        </div>
+        <div class="wrap">
+          <input type="checkbox" name="mushroom" id="mushroom" />
+          <label for="mushroom">Mushroom</label>
+        </div>
+        <div class="wrap">
+          <input type="checkbox" name="onions" id="onions" />
+          <label for="onions">Onions</label>
+        </div>
+        <div class="wrap">
+          <input type="checkbox" name="olive" id="olive" />
+          <label for="olive">Olive</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Crust type</legend>
+        <input type="radio" name="crust" id="thin" />
+        <label for="thin">Thin crust</label>
+        <input type="radio" name="crust" id="deep" />
+        <label for="deep">Deep pan</label>
+      </fieldset>
+      <fieldset>
+        <legend>Delivery method</legend>
+        <input type="radio" name="delivery" id="collect" />
+        <label for="collect">Collect self</label>
+        <input type="radio" name="delivery" id="deliver" />
+        <label for="deliver">Home delivery</label>
+      </fieldset>
+      <fieldset id="address">
+        <legend>Address</legend>
+        <label for="street">Street</label>
+        <input
+          type="text"
+          name="street"
+          id="street"
+          autocapitalize="words"
+        /><br />
+        <label for="buildingno">Building number</label>
+        <input type="number" name="buildingno" id="buildingno" />
+        <label for="postal">Postal code</label>
+        <input
+          type="text"
+          name="postal"
+          id="postal"
+          pattern="[0-9] {4}"
+          size="4"
+        />
+        <label for="city">City</label>
+        <input type="text" name="city" id="city" />
+      </fieldset>
+      <input type="submit" value="submit" />
+    </form>
+  </body>
+</html>

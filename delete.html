@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DELETE Method</title>
+  </head>
+  <body>
+    <button class="add">Add New Friend</button>
+    <main></main>
+    <template>
+      <article>
+        <h1 class="first"></h1>
+        <h2 class="last"></h2>
+        <p class="age"></p>
+        <button>Delete Me</button>
+      </article>
+    </template>
+    <script>
+      document.addEventListener("DOMContentLoaded", start);
+
+      const endpoint = "https://frontendspring20-e4cd.restdb.io/rest/friends";
+      const apiKey = "5e956ffd436377171a0c230f";
+
+      function start() {
+        get();
+        document.querySelector(".add").addEventListener("click", () => {
+          const data = {
+            first_name: "Bridget",
+            last_name: "Le",
+            age: 26,
+          };
+          post(data);
+        });
+      }
+      function get() {
+        document.querySelector("main").innerHTML = "";
+        fetch(endpoint + "?max=5", {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "x-apikey": apiKey,
+            "cache-control": "no-cache",
+          },
+        })
+          .then((e) => e.json())
+          .then(showData);
+      }
+
+      function showData(e) {
+        e.forEach(showFriends);
+      }
+
+      function showFriends(friend) {
+        console.log(friend);
+        const pattern = document.querySelector("template").content;
+        const display = document.querySelector("main");
+        const clone = pattern.cloneNode(true);
+        clone.querySelector("article").dataset.id = friend._id;
+        clone.querySelector(".first").textContent = friend.first_name;
+        clone.querySelector(".last").textContent = friend.last_name;
+        clone.querySelector(".age").textContent = friend.age;
+        clone.querySelector("button").addEventListener("click", () => {
+          deleteIT(friend._id);
+        });
+        display.appendChild(clone);
+      }
+      function post(data) {
+        //Optimistic inserts
+        //showFriend(data);
+        const postData = JSON.stringify(data);
+        fetch(endpoint, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "x-apikey": apiKey,
+            "cache-control": "no-cache",
+          },
+          body: postData,
+        })
+          .then((res) => res.json())
+          .then((data) => showFriends(data));
+      }
+
+      function deleteIT(id) {
+        document.querySelector(`article[data-id='${id}']`).remove();
+        fetch(`${endpoint}/${id}`, {
+          method: "delete",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "x-apikey": apiKey,
+            "cache-control": "no-cache",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {});
+      }
+    </script>
+  </body>
+</html>
