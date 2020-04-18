@@ -1,72 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Friend List</title>
-  </head>
-  <body>
-    <h1 class="pagetitle">Friend List</h1>
-    <button class="add">Add New Friend</button>
-    <!-- Add a new friend form -->
-    <form action="" class="hidden">
-      <h2>New friend</h2>
-      <div class="f_name wrap">
-        <label for="fstname">First name</label><br /><br />
-        <input type="text" name="fstname" id="fstname" required />
-        <p>Please write first name</p>
-      </div>
-      <div class="l_name wrap">
-        <label for="lstname">Last name</label><br /><br />
-        <input type="text" name="lstname" id="lstname" required />
-        <p>Last name please!</p>
-      </div>
-      <fieldset class="container">
-        <legend>Date of Birth</legend>
-        <div class="wrap">
-          <label for="dob">DOB</label>
-          <input type="date" name="dob" id="dob" />
-        </div>
-        <div class="wrap2">
-          <input type="checkbox" name="unknownDOB" id="unknownDOB" />
-          <label for="unknownDOB">Unknown DOB</label><br />
-        </div>
-        <div class="wrap">
-          <label for="age">Age</label>
-          <input type="number" name="age" />
-        </div>
-      </fieldset>
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Friend List</title>
+</head>
+
+<body>
+  <h1 class="pagetitle">Friend List</h1>
+  <button class="add">Add New Friend</button>
+  <!-- Add a new friend form -->
+  <form action="" class="hidden">
+    <h2>New friend</h2>
+    <div class="f_name wrap">
+      <label for="fstname">First name</label><br /><br />
+      <input type="text" name="fstname" id="fstname" required />
+      <p>Please write first name</p>
+    </div>
+    <div class="l_name wrap">
+      <label for="lstname">Last name</label><br /><br />
+      <input type="text" name="lstname" id="lstname" required />
+      <p>Last name please!</p>
+    </div>
+    <fieldset class="container">
+      <legend>Date of Birth</legend>
       <div class="wrap">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" required />
-        <p>Email please!</p>
+        <label for="dob">DOB</label>
+        <input type="date" name="dob" id="dob" />
       </div>
-      <div class="container">
-        <button type="submit" class="submit" data-action="delete" data-id>
-          Submit
-        </button>
-        <button class="cancel">Cancel</button>
+      <div class="wrap2">
+        <input type="checkbox" name="unknownDOB" id="unknownDOB" />
+        <label for="unknownDOB">Unknown DOB</label><br />
       </div>
-    </form>
+      <div class="wrap">
+        <label for="age">Age</label>
+        <input type="number" name="age" />
+      </div>
+    </fieldset>
 
-    <!-- Displaying cards in This list -->
-    <main class=""></main>
-    <!-- Each card's layout -->
-    <template>
-      <article id="onePerson">
-        <div class="fullname">
-          <h2 class="first"></h2>
-          <h2 class="last"></h2>
-        </div>
-        <p class="age"></p>
-        <p class="email"></p>
-        <button class="deleteme" data-id="" data-action="delete">
-          Delete Me
-        </button>
-      </article>
-    </template>
-    <script src="script.js"></script>
-  </body>
+    <div class="wrap">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required />
+      <p>Email please!</p>
+    </div>
+    <div class="container">
+      <button type="submit" class="submit" data-action="delete" data-id>
+        Submit
+      </button>
+      <button class="cancel">Cancel</button>
+    </div>
+  </form>
+
+  <!-- Displaying cards in This list -->
+  <main class=""></main>
+  <!-- Each card's layout -->
+  <template>
+    <article id="onePerson">
+      <div class="fullname">
+        <h2 class="first"></h2>
+        <h2 class="last"></h2>
+      </div>
+      <p class="age"></p>
+      <p class="email"></p>
+      <button class="deleteme" data-id="" data-action="delete">
+        Delete Me
+      </button>
+    </article>
+  </template>
+  <script src="script.js"></script>
+</body>
+
 </html>
