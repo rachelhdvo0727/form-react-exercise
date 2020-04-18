@@ -95,7 +95,6 @@ function showFriends(friend) {
     .querySelector(`[data-action="delete"]`)
     .addEventListener("click", (elm) => deleteAFriend(friend._id));
   display.appendChild(clone);
-  console.log(friend);
 }
 function post(data) {
   const postData = JSON.stringify(data);
