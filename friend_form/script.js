@@ -73,7 +73,7 @@ function get() {
     },
   })
     .then((e) => e.json())
-    .then((data) => data.forEach(showFriends));
+    .then((data) => showData);
 }
 
 function showData(e) {
@@ -122,5 +122,5 @@ function deleteAFriend(id) {
     },
   })
     .then((res) => res.json())
-    .then((data) => {});
+    .then((data) => { });
 }
