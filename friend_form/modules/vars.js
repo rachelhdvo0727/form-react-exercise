@@ -4,3 +4,4 @@ export const form = document.querySelector("form");
 export const pattern = document.querySelector("template").content;
 export const elms = form.elements;
 export const formElms = form.querySelectorAll("input");
+export let validForm = true;

@@ -123,7 +123,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.formElms = exports.elms = exports.pattern = exports.form = exports.apiKey = exports.endpoint = void 0;
+exports.validForm = exports.formElms = exports.elms = exports.pattern = exports.form = exports.apiKey = exports.endpoint = void 0;
 var endpoint = "https://frontendspring20-e4cd.restdb.io/rest/friends";
 exports.endpoint = endpoint;
 var apiKey = "5e956ffd436377171a0c230f";
@@ -136,6 +136,8 @@ var elms = form.elements;
 exports.elms = elms;
 var formElms = form.querySelectorAll("input");
 exports.formElms = formElms;
+var validForm = true;
+exports.validForm = validForm;
 },{}],"script.js":[function(require,module,exports) {
 "use strict";
 
@@ -244,7 +246,6 @@ function showFriends(friend) {
     return deleteAFriend(friend._id);
   });
   display.appendChild(clone);
-  console.log(friend);
 }
 
 function post(data) {
@@ -305,7 +306,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53812" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52256" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

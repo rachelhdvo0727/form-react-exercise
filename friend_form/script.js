@@ -8,6 +8,7 @@ import {
   elms,
   formElms,
 } from "./modules/vars";
+
 function start() {
   document.querySelector(".add").addEventListener("click", (evt) => {
     form.classList.remove("hidden");
