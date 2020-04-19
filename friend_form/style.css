@@ -56,7 +56,7 @@ input + p {
   background-color: lavender;
   box-shadow: 0.2em 0.2em 0.8em lightgrey;
 }
-.deleteme {
+.deleteme, .editme {
   align-self: flex-end;
   width: 15vw;
 }

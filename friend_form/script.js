@@ -29,15 +29,23 @@ function checkInfo() {
     formElms.forEach((elm) => {
       elm.classList.remove("invalid");
     });
-
+    let validForm = true;
     if (form.checkValidity() && validForm) {
-      //send data
-      post({
-        first_name: elms.fstname.value,
-        last_name: elms.lstname.value,
-        age: elms.age.value,
-        email: elms.email.value,
-      });
+      if (form.dataset.state === "post") {
+        post({
+          first_name: elms.fstname.value,
+          last_name: elms.lstname.value,
+          age: elms.age.value,
+          email: elms.email.value
+        });
+      } else {
+        put({
+          first_name: elms.fstname.value,
+          last_name: elms.lstname.value,
+          age: elms.age.value,
+          email: elms.email.value
+        }, form.dataset.id);
+      }
       form.classList.add("hidden");
       form.reset();
     } else {
@@ -95,6 +103,9 @@ function showFriends(friend) {
   clone
     .querySelector(`[data-action="delete"]`)
     .addEventListener("click", (elm) => deleteAFriend(friend._id));
+  clone
+    .querySelector(`[data-action="edit"]`)
+    .addEventListener("click", (elm) => getAFriend(friend._id, setupFormforEdit));
   display.appendChild(clone);
 }
 function post(data) {
@@ -124,4 +135,47 @@ function deleteAFriend(id) {
   })
     .then((res) => res.json())
     .then((data) => { });
+}
+function getAFriend(id, callback) {
+  //fetch data, using the id
+  fetch(`${endpoint}/${id}`, {
+    method: "get",
+    headers: {
+      accept: "application/json",
+      "x-apikey": apiKey,
+      "cache-control": "no-cache",
+    },
+  })
+    .then((e) => e.json())
+    .then((data) => callback(data));
+}
+function setupFormforEdit(data) {
+  console.log("on");
+  //show the form
+  form.classList.remove("hidden");
+  document.querySelector("main").classList.add("blurBg");
+  //populate the form
+  form.dataset.state = "put";
+  form.dataset.id = data._id;
+  elms.fstname.value = data.first_name;
+  elms.lstname.value = data.last_name;
+  //handle submits
+  checkInfo();
+  form.classList.add("hidden");
+  document.querySelector("main").classList.remove("blurBg");
+  //remove evt handler and add evt handler
+}
+function put(data, id) {
+  const putData = JSON.stringify(data);
+  fetch(`${endpoint}/${id}`, {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "x-apikey": apiKey,
+      "cache-control": "no-cache",
+    },
+    body: putData,
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data));
 }

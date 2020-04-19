@@ -12,7 +12,7 @@
   <h1 class="pagetitle">Friend List</h1>
   <button class="add">Add New Friend</button>
   <!-- Add a new friend form -->
-  <form action="" class="hidden">
+  <form action="" class="hidden" data-state="post">
     <h2>New friend</h2>
     <div class="f_name wrap">
       <label for="fstname">First name</label><br><br>
@@ -64,6 +64,8 @@
       </div>
       <p class="age"></p>
       <p class="email"></p>
+      <button class="editme" data-id="" data-action="edit">
+        Edit </button>
       <button class="deleteme" data-id="" data-action="delete">
         Delete Me
       </button>

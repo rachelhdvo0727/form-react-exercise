@@ -123,7 +123,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.validForm = exports.formElms = exports.elms = exports.pattern = exports.form = exports.apiKey = exports.endpoint = void 0;
+exports.formElms = exports.elms = exports.pattern = exports.form = exports.apiKey = exports.endpoint = void 0;
 var endpoint = "https://frontendspring20-e4cd.restdb.io/rest/friends";
 exports.endpoint = endpoint;
 var apiKey = "5e956ffd436377171a0c230f";
@@ -136,8 +136,6 @@ var elms = form.elements;
 exports.elms = elms;
 var formElms = form.querySelectorAll("input");
 exports.formElms = formElms;
-var validForm = true;
-exports.validForm = validForm;
 },{}],"script.js":[function(require,module,exports) {
 "use strict";
 
@@ -172,14 +170,24 @@ function checkInfo() {
       elm.classList.remove("invalid");
     });
 
+    var validForm = true;
+
     if (_vars.form.checkValidity() && validForm) {
-      //send data
-      post({
-        first_name: _vars.elms.fstname.value,
-        last_name: _vars.elms.lstname.value,
-        age: _vars.elms.age.value,
-        email: _vars.elms.email.value
-      });
+      if (_vars.form.dataset.state === "post") {
+        post({
+          first_name: _vars.elms.fstname.value,
+          last_name: _vars.elms.lstname.value,
+          age: _vars.elms.age.value,
+          email: _vars.elms.email.value
+        });
+      } else {
+        put({
+          first_name: _vars.elms.fstname.value,
+          last_name: _vars.elms.lstname.value,
+          age: _vars.elms.age.value,
+          email: _vars.elms.email.value
+        }, _vars.form.dataset.id);
+      }
 
       _vars.form.classList.add("hidden");
 
@@ -245,6 +253,9 @@ function showFriends(friend) {
   clone.querySelector("[data-action=\"delete\"]").addEventListener("click", function (elm) {
     return deleteAFriend(friend._id);
   });
+  clone.querySelector("[data-action=\"edit\"]").addEventListener("click", function (elm) {
+    return getAFriend(friend._id, setupFormforEdit);
+  });
   display.appendChild(clone);
 }
 
@@ -278,6 +289,58 @@ function deleteAFriend(id) {
     return res.json();
   }).then(function (data) {});
 }
+
+function getAFriend(id, callback) {
+  //fetch data, using the id
+  fetch("".concat(_vars.endpoint, "/").concat(id), {
+    method: "get",
+    headers: {
+      accept: "application/json",
+      "x-apikey": _vars.apiKey,
+      "cache-control": "no-cache"
+    }
+  }).then(function (e) {
+    return e.json();
+  }).then(function (data) {
+    return callback(data);
+  });
+}
+
+function setupFormforEdit(data) {
+  console.log("on"); //show the form
+
+  _vars.form.classList.remove("hidden");
+
+  document.querySelector("main").classList.add("blurBg"); //populate the form
+
+  _vars.form.dataset.state = "put";
+  _vars.form.dataset.id = data._id;
+  _vars.elms.fstname.value = data.first_name;
+  _vars.elms.lstname.value = data.last_name; //handle submits
+
+  checkInfo();
+
+  _vars.form.classList.add("hidden");
+
+  document.querySelector("main").classList.remove("blurBg"); //remove evt handler and add evt handler
+}
+
+function put(data, id) {
+  var putData = JSON.stringify(data);
+  fetch("".concat(_vars.endpoint, "/").concat(id), {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "x-apikey": _vars.apiKey,
+      "cache-control": "no-cache"
+    },
+    body: putData
+  }).then(function (res) {
+    return res.json();
+  }).then(function (data) {
+    return console.log(data);
+  });
+}
 },{"./modules/vars":"modules/vars.js"}],"../../../../../../../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -306,7 +369,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52256" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54064" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
