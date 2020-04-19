@@ -318,11 +318,13 @@ function setupFormforEdit(data) {
   _vars.elms.fstname.value = data.first_name;
   _vars.elms.lstname.value = data.last_name; //handle submits
 
-  checkInfo();
+  document.querySelector(".submit").addEventListener("click", function (e) {
+    checkInfo();
 
-  _vars.form.classList.add("hidden");
+    _vars.form.classList.add("hidden");
 
-  document.querySelector("main").classList.remove("blurBg"); //remove evt handler and add evt handler
+    document.querySelector("main").classList.remove("blurBg");
+  }); //remove evt handler and add evt handler
 }
 
 function put(data, id) {
@@ -338,7 +340,18 @@ function put(data, id) {
   }).then(function (res) {
     return res.json();
   }).then(function (data) {
-    return console.log(data);
+    var copy = document.querySelector("article[data-id='".concat(id, "']"));
+    copy.querySelector(".first").textContent = data.first_name;
+    copy.querySelector(".last").textContent = data.last_name;
+    copy.querySelector(".email").textContent = data.email;
+    copy.querySelector(".age").textContent = data.age; //clone.querySelector("button").dataset.id = friend._id;
+
+    copy.querySelector("[data-action=\"delete\"]").addEventListener("click", function (elm) {
+      return deleteAFriend(data._id);
+    });
+    copy.querySelector("[data-action=\"edit\"]").addEventListener("click", function (elm) {
+      return getAFriend(data._id, setupFormforEdit);
+    });
   });
 }
 },{"./modules/vars":"modules/vars.js"}],"../../../../../../../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -369,7 +382,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54064" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53596" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

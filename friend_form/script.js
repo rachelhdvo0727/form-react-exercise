@@ -160,9 +160,11 @@ function setupFormforEdit(data) {
   elms.fstname.value = data.first_name;
   elms.lstname.value = data.last_name;
   //handle submits
-  checkInfo();
-  form.classList.add("hidden");
-  document.querySelector("main").classList.remove("blurBg");
+  document.querySelector(".submit").addEventListener("click", (e) => {
+    checkInfo();
+    form.classList.add("hidden");
+    document.querySelector("main").classList.remove("blurBg");
+  })
   //remove evt handler and add evt handler
 }
 function put(data, id) {
@@ -177,5 +179,18 @@ function put(data, id) {
     body: putData,
   })
     .then((res) => res.json())
-    .then((data) => console.log(data));
+    .then((data) => {
+      const copy = document.querySelector(`article[data-id='${id}']`);
+      copy.querySelector(".first").textContent = data.first_name;
+      copy.querySelector(".last").textContent = data.last_name;
+      copy.querySelector(".email").textContent = data.email;
+      copy.querySelector(".age").textContent = data.age;
+      //clone.querySelector("button").dataset.id = friend._id;
+      copy
+        .querySelector(`[data-action="delete"]`)
+        .addEventListener("click", (elm) => deleteAFriend(data._id));
+      copy
+        .querySelector(`[data-action="edit"]`)
+        .addEventListener("click", (elm) => getAFriend(data._id, setupFormforEdit));
+    });
 }
