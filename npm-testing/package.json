@@ -1,0 +1,19 @@
+{
+  "name": "npm-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "cleave.js": "^1.5.10",
+    "is_js": "^0.9.0"
+  }
+}
