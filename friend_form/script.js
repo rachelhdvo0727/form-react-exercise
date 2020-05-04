@@ -87,6 +87,7 @@ function get() {
 
 function showData(e) {
   e.forEach(showFriends);
+  
 }
 
 function showFriends(friend) {
