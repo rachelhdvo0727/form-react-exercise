@@ -4,13 +4,15 @@ import Form from "./form";
 
 export default function List(props) {
   console.log(props); //objects
+  const cards = props.cards.map((card) => (
+    <Card key={card.id} {...card} />
+    //added a unique key to each card (needed) to render effiently
+  ));
+
   return (
     <section>
       <h2>{props.header}</h2>
-      <ul>
-        <Card {...props.cards[0]} />
-        <Card {...props.cards[1]} />
-      </ul>
+      <ul>{cards}</ul>
       <Form />
     </section>
   );
