@@ -26,7 +26,7 @@ export default function App() {
     <div className="App">
       <Navi></Navi>
       <Main cards={cards} />
-      {/* <button
+      <button
         onClick={() =>
           setCards(
             cards.concat({
@@ -41,7 +41,7 @@ export default function App() {
         }
       >
         Click This
-      </button> */}
+      </button>
     </div>
   );
 }
