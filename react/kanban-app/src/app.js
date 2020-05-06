@@ -22,11 +22,25 @@ export default function App() {
       assignedTo: ["jofh", "davi"],
     },
   ]);
+  function onFormSubmit(data) {
+    console.log("form submitted", data);
+    setCards(
+      cards.concat({
+        title: "OMG, did that just happen?",
+        list: "doing",
+        added: Date.now(),
+        id: Math.random(),
+        color: "lightblue",
+        assignedTo: ["jofh"],
+      })
+    );
+  }
   return (
     <div className="App">
       <Navi></Navi>
-      <Main cards={cards} />
-      <button
+      {/* <Main cards={cards} /> */}
+      <Main onFormSubmit={onFormSubmit} cards={cards} />
+      {/* <button
         onClick={() =>
           setCards(
             cards.concat({
@@ -41,7 +55,7 @@ export default function App() {
         }
       >
         Click This
-      </button>
+      </button> */}
     </div>
   );
 }
