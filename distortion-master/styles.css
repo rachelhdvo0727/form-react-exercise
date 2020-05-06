@@ -61,3 +61,17 @@
   margin-right: auto;
   transition: all 1s ease-out;
 }
+.needle {
+  z-index: 5;
+  width: 5px;
+  height: 50px;
+  background: yellow;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  display: inline-block;
+  left: 195px;
+  position: absolute;
+  top: 128px;
+}
