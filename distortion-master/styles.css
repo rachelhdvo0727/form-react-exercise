@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 400px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.gauge-a {
+  width: 400px;
+  height: 200px;
+  position: absolute;
+  z-index: 1;
+  position: absolute;
+  background-color: azure;
+  top: 0%;
+  border-radius: 250px 250px 0 0;
+}
+.gauge-b {
+  z-index: 3;
+  position: absolute;
+  background-color: green;
+  width: 250px;
+  height: 125px;
+  top: 75px;
+  margin: 0 auto 0 75px;
+  border-radius: 250px 250px 0 0;
+}
+.gauge-c {
+  z-index: 2;
+  position: absolute;
+  background-color: #5664f9;
+  width: 400px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 200px;
+  border-radius: 0px 0px 200px 200px;
+  transform-origin: center top;
+  transition: all 1s ease-in-out;
+}
+.gauge-data {
+  z-index: 4;
+  color: yellow;
+  font-family: monospace;
+  font-size: 0.8rem;
+  line-height: 25px;
+  position: absolute;
+  width: 400px;
+  height: 200px;
+  top: 175px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 1s ease-out;
+}
