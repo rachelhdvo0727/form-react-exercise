@@ -8,7 +8,6 @@ export default function List(props) {
     <Card key={card.id} {...card} />
     //added a unique key to each card (needed) to render eff
   ));
-
   return (
     <section>
       <h2>{props.header}</h2>

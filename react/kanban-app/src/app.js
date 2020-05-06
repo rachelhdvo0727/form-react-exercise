@@ -38,7 +38,6 @@ export default function App() {
   return (
     <div className="App">
       <Navi></Navi>
-      {/* <Main cards={cards} /> */}
       <Main onFormSubmit={onFormSubmit} cards={cards} />
       {/* <button
         onClick={() =>
