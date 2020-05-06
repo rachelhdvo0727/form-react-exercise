@@ -1,11 +1,11 @@
 import React from "react";
-import CardButton from "./card-button";
+import Newcardbutton from "./newcard-button";
 
 export default function Form() {
   return (
     <form>
       <input />
-      <CardButton />
+      <Newcardbutton />
     </form>
   );
 }

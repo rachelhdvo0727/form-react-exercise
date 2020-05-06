@@ -1,5 +1,10 @@
 import React from "react";
+import RandomComp from "./random-comp";
 //import CardButton from "./card-button";
 export default function Navi() {
-  return <nav>Nav</nav>;
+  return (
+    <nav>
+      <RandomComp></RandomComp>
+    </nav>
+  );
 }

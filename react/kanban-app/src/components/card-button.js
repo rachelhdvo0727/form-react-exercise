@@ -5,5 +5,5 @@ export default function CardButton(props) {
   function clicked(e) {
     setClicks(clicks + 1);
   }
-  return <button onClick={clicked}>You've clicked {clicks}</button>;
+  return <button onClick={clicked}>Edit {clicks}</button>;
 }

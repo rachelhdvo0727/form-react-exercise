@@ -4,24 +4,6 @@ import Navi from "./components/navi";
 import Main from "./components/main";
 
 export default function App() {
-  // const cards = [
-  //   {
-  //     title: "Make it dynamic",
-  //     list: "todo",
-  //     added: 1588055291061,
-  //     id: 1,
-  //     color: "hotpink",
-  //     assignedTo: ["jofh"],
-  //   },
-  //   {
-  //     title: "Make it dynamic",
-  //     list: "todo",
-  //     added: 1588055091061,
-  //     id: 2,
-  //     color: "lightblue",
-  //     assignedTo: ["jofh", "davi"],
-  //   },
-  // ];
   const [cards, setCards] = useState([
     {
       title: "Make it dynamic",
@@ -40,12 +22,11 @@ export default function App() {
       assignedTo: ["jofh", "davi"],
     },
   ]);
-
   return (
     <div className="App">
       <Navi></Navi>
       <Main cards={cards} />
-      <button
+      {/* <button
         onClick={() =>
           setCards(
             cards.concat({
@@ -58,7 +39,9 @@ export default function App() {
             })
           )
         }
-      >Click This</button>
+      >
+        Click This
+      </button> */}
     </div>
   );
 }
