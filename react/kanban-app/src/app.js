@@ -58,7 +58,7 @@ export default function App() {
             })
           )
         }
-      >CLick This</button>
+      >Click This</button>
     </div>
   );
 }
