@@ -45,7 +45,7 @@ export default function App() {
   return (
     <div className="App">
       <Navi></Navi>
-      {/* {cards.length === 0 && <h2>Loading</h2>} */}
+      {cards.length === 0 && <h2>Loading</h2>}
       <Main
         onCardDelete={onCardDelete}
         onCardMove={onCardMove}

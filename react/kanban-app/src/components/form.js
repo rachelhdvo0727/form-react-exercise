@@ -9,13 +9,13 @@ export default function Form(props) {
     props.onFormSubmit({
       title: task_name,
       list: "todo",
-      added: 1588055291061,
-      id: 1,
+      added: Date.now(),
+      _id: Math.random(),
       color: color,
       assignedTo: ["jofh"],
     });
-    setColor(" ");
-    setTitle(" ");
+    setColor("");
+    setTitle("");
   }
   function titleChanged(evt) {
     setTitle(evt.target.value);
@@ -23,13 +23,14 @@ export default function Form(props) {
   function colorChanged(evt) {
     setColor(evt.target.value);
   }
+  console.log(task_name);
   return (
     <form onSubmit={submit}>
       <label>
         Title
         <input
           type="text"
-          name="task_name"
+          name="title"
           value={task_name}
           onChange={titleChanged}
         />
@@ -43,7 +44,12 @@ export default function Form(props) {
           onChange={colorChanged}
         />
       </label>
-      <input type="submit" name="submit" value="Add" />
+      <input
+        disabled={task_name.length === 0 || task_name === " "}
+        type="submit"
+        name="submit"
+        value="Add"
+      />
     </form>
   );
 }

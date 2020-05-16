@@ -7,7 +7,7 @@ export default function Main({
   onCardDelete,
   onCardMove,
 }) {
-  console.log(cards);
+  // console.log(cards);
   return (
     <main>
       <List
