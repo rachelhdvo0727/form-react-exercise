@@ -5,7 +5,12 @@ import Form from "./form";
 export default function List(props) {
   console.log(props); //objects
   const cards = props.cards.map((card) => (
-    <Card key={card.id} {...card} />
+    <Card
+      onCardDelete={props.onCardDelete}
+      onCardMove={props.onCardMove}
+      key={card.id}
+      {...card}
+    />
     //added a unique key to each card (needed) to render eff
   ));
   return (

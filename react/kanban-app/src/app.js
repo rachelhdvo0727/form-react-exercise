@@ -24,10 +24,11 @@ export default function App() {
   ]);
   function onFormSubmit(data) {
     console.log("form submitted", data);
+    //const cardSubmit = cards.concat((card) => card.list === list);
     setCards(
       cards.concat({
         title: "OMG, did that just happen?",
-        list: "doing",
+        list: "todo",
         added: Date.now(),
         id: Math.random(),
         color: "lightblue",
@@ -35,10 +36,31 @@ export default function App() {
       })
     );
   }
+  function onCardMove(id, whereTo) {
+    console.log(id, whereTo);
+    const nextCards = cards.map((card) => {
+      if (card.id === id) {
+        console.log("update the card");
+        card.list = whereTo;
+      }
+      return card;
+    });
+    setCards(nextCards);
+  }
+  function onCardDelete(id) {
+    console.log(id);
+    const nextCards = cards.filter((card) => card.id !== id);
+    setCards(nextCards);
+  }
   return (
     <div className="App">
       <Navi></Navi>
-      <Main onFormSubmit={onFormSubmit} cards={cards} />
+      <Main
+        onCardDelete={onCardDelete}
+        onCardMove={onCardMove}
+        onFormSubmit={onFormSubmit}
+        cards={cards}
+      />
       {/* <button
         onClick={() =>
           setCards(
