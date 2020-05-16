@@ -15,9 +15,9 @@ code {
   display: grid;
   grid-template-columns: 1fr 3fr;
 }
-nav {
-  /* background-color: dimgray; */
-}
+/* nav {
+  /* background-color: dimgray;
+} */
 main {
   /* background-color: green; */
   display: grid;
