@@ -47,7 +47,9 @@ export default function App() {
   }
   return (
     <div className="App">
-      <Navi></Navi>
+      <Navi>
+        <a href="#">Link</a>
+      </Navi>
       {cards.length === 0 && <h2>Loading</h2>}
       <Main
         onCardDelete={onCardDelete}
