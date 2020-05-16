@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./card";
 import Form from "./form";
+import Panel from "muicss/lib/react/panel";
 
 export default function List(props) {
   //console.log(props); //current object
@@ -14,10 +15,10 @@ export default function List(props) {
     //added a unique key to each card (needed) to render eff
   ));
   return (
-    <section>
+    <Panel>
       <h2>{props.header}</h2>
       <ul>{cards}</ul>
       <Form onFormSubmit={props.onFormSubmit} />
-    </section>
+    </Panel>
   );
 }

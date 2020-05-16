@@ -26,10 +26,9 @@ export default function Form(props) {
     setColor(evt.target.value);
   }
   const inputStyle = {
-    borderColor:
-      title === " " ? "red" : "blue" && title.length > 0 ? "blue" : "red",
-    borderWidth: "1px",
-    borderStyle: "solid",
+    borderColor: title === " " ? "" : "" && title.length > 0 ? "" : "",
+    // borderWidth: "1px",
+    // borderStyle: "solid",
   };
   return (
     <form className={styles.cardForm} onSubmit={submit}>
@@ -52,7 +51,11 @@ export default function Form(props) {
         onChange={colorChanged}
       />
 
-      <Button color="accent" disabled={title.length === 0 || title === " "}>
+      <Button
+        color="accent"
+        variant="raised"
+        disabled={title.length === 0 || title === " "}
+      >
         Add
       </Button>
     </form>

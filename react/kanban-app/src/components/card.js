@@ -1,5 +1,6 @@
 import React from "react";
 import CardButton from "./card-button";
+import Button from "muicss/lib/react/button";
 
 export default function Card(props) {
   // console.log(props); //current object passed down from parent
@@ -18,10 +19,18 @@ export default function Card(props) {
       <h3>{props.title}</h3>
       <p>{props.color}</p>
       <CardButton />
-      <button onClick={onDelete}>Delete</button>
-      <button onClick={() => onMove("todo")}>To Todo</button>
-      <button onClick={() => onMove("doing")}>To Doing</button>
-      <button onClick={() => onMove("done")}>To Done</button>
+      <Button size="small" color="primary" onClick={onDelete}>
+        Delete
+      </Button>
+      <Button size="small" color="primary" onClick={() => onMove("todo")}>
+        To Todo
+      </Button>
+      <Button size="small" color="primary" onClick={() => onMove("doing")}>
+        To Doing
+      </Button>
+      <Button size="small" color="primary" onClick={() => onMove("done")}>
+        To Done
+      </Button>
     </article>
   );
 }
