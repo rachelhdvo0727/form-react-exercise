@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Form.module.css";
 import Button from "muicss/lib/react/button";
 import Input from "muicss/lib/react/input";
-
+import { CirclePicker } from "react-color";
 export default function Form(props) {
   const [title, setTitle] = useState(" ");
   const [color, setColor] = useState(" ");
@@ -22,8 +22,8 @@ export default function Form(props) {
   function titleChanged(evt) {
     setTitle(evt.target.value);
   }
-  function colorChanged(evt) {
-    setColor(evt.target.value);
+  function colorChanged(color) {
+    setColor(color.hex);
   }
   const inputStyle = {
     borderColor: title === " " ? "" : "" && title.length > 0 ? "" : "",
@@ -42,15 +42,18 @@ export default function Form(props) {
         style={inputStyle}
       />
 
-      <Input
+      {/* <Input
         label="Color"
         floatingLabel={true}
         type="color"
         name="color"
         value={color}
         onChange={colorChanged}
-      />
-
+      /> */}
+      <CirclePicker
+        value={color}
+        onChangeComplete={colorChanged}
+      ></CirclePicker>
       <Button
         color="accent"
         variant="raised"
