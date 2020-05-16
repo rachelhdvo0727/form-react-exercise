@@ -14,7 +14,7 @@ export default function Form(props) {
       list: "todo",
       added: Date.now(),
       color: color,
-      assigned_to: ["jofh"],
+      assigned_to: ["rach"],
     });
     setColor("");
     setTitle("");
