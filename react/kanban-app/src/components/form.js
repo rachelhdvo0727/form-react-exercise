@@ -1,18 +1,18 @@
 import React, { useState } from "react";
+import styles from "./Form.module.css";
 
 export default function Form(props) {
-  const [task_name, setTitle] = useState(" ");
+  const [title, setTitle] = useState(" ");
   const [color, setColor] = useState(" ");
   function submit(evt) {
     evt.preventDefault();
     // console.log("submit?", evt);
     props.onFormSubmit({
-      title: task_name,
+      title: title,
       list: "todo",
       added: Date.now(),
-      _id: Math.random(),
       color: color,
-      assignedTo: ["jofh"],
+      assigned_to: ["jofh"],
     });
     setColor("");
     setTitle("");
@@ -23,16 +23,22 @@ export default function Form(props) {
   function colorChanged(evt) {
     setColor(evt.target.value);
   }
-  console.log(task_name);
+  const inputStyle = {
+    borderColor:
+      title === " " ? "red" : "blue" && title.length > 0 ? "blue" : "red",
+    borderWidth: "1px",
+    borderStyle: "solid",
+  };
   return (
-    <form onSubmit={submit}>
+    <form className={styles.cardForm} onSubmit={submit}>
       <label>
         Title
         <input
           type="text"
           name="title"
-          value={task_name}
+          value={title}
           onChange={titleChanged}
+          style={inputStyle}
         />
       </label>
       <label>
@@ -45,7 +51,7 @@ export default function Form(props) {
         />
       </label>
       <input
-        disabled={task_name.length === 0 || task_name === " "}
+        disabled={title.length === 0 || title === " "}
         type="submit"
         name="submit"
         value="Add"

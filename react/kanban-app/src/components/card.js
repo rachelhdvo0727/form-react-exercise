@@ -9,9 +9,13 @@ export default function Card(props) {
   function onMove(whereTo) {
     props.onCardMove(props._id, whereTo);
   }
+  //styling
+  const cardColor = {
+    backgroundColor: props.color,
+  };
   return (
-    <article>
-      <h3>{props.task_name}</h3>
+    <article style={cardColor}>
+      <h3>{props.title}</h3>
       <p>{props.color}</p>
       <CardButton />
       <button onClick={onDelete}>Delete</button>
