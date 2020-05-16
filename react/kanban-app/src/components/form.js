@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Form.module.css";
+import Button from "muicss/lib/react/button";
+import Input from "muicss/lib/react/input";
 
 export default function Form(props) {
   const [title, setTitle] = useState(" ");
@@ -31,31 +33,28 @@ export default function Form(props) {
   };
   return (
     <form className={styles.cardForm} onSubmit={submit}>
-      <label>
-        Title
-        <input
-          type="text"
-          name="title"
-          value={title}
-          onChange={titleChanged}
-          style={inputStyle}
-        />
-      </label>
-      <label>
-        color
-        <input
-          type="color"
-          name="color"
-          value={color}
-          onChange={colorChanged}
-        />
-      </label>
-      <input
-        disabled={title.length === 0 || title === " "}
-        type="submit"
-        name="submit"
-        value="Add"
+      <Input
+        label="Title"
+        floatingLabel={true}
+        type="text"
+        name="title"
+        value={title}
+        onChange={titleChanged}
+        style={inputStyle}
       />
+
+      <Input
+        label="Color"
+        floatingLabel={true}
+        type="color"
+        name="color"
+        value={color}
+        onChange={colorChanged}
+      />
+
+      <Button color="accent" disabled={title.length === 0 || title === " "}>
+        Add
+      </Button>
     </form>
   );
 }

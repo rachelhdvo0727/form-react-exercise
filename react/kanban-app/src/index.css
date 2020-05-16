@@ -16,10 +16,10 @@ code {
   grid-template-columns: 1fr 3fr;
 }
 nav {
-  background-color: dimgray;
+  /* background-color: dimgray; */
 }
 main {
-  background-color: green;
+  /* background-color: green; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
