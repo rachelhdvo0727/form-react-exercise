@@ -2,16 +2,16 @@ import React from "react";
 import CardButton from "./card-button";
 
 export default function Card(props) {
-  console.log(props);
+  // console.log(props); //current object passed down from parent
   function onDelete() {
-    props.onCardDelete(props.id);
+    props.onCardDelete(props._id);
   }
   function onMove(whereTo) {
-    props.onCardMove(props.id, whereTo);
+    props.onCardMove(props._id, whereTo);
   }
   return (
     <article>
-      <h3>{props.title}</h3>
+      <h3>{props.task_name}</h3>
       <p>{props.color}</p>
       <CardButton />
       <button onClick={onDelete}>Delete</button>

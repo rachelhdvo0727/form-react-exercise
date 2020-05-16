@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 export default function Form(props) {
-  const [title, setTitle] = useState(" ");
+  const [task_name, setTitle] = useState(" ");
   const [color, setColor] = useState(" ");
   function submit(evt) {
     evt.preventDefault();
     // console.log("submit?", evt);
     props.onFormSubmit({
-      title: title,
+      title: task_name,
       list: "todo",
       added: 1588055291061,
       id: 1,
@@ -27,7 +27,12 @@ export default function Form(props) {
     <form onSubmit={submit}>
       <label>
         Title
-        <input type="text" name="title" value={title} onChange={titleChanged} />
+        <input
+          type="text"
+          name="task_name"
+          value={task_name}
+          onChange={titleChanged}
+        />
       </label>
       <label>
         color

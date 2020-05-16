@@ -3,12 +3,12 @@ import Card from "./card";
 import Form from "./form";
 
 export default function List(props) {
-  console.log(props); //objects
+  //console.log(props); //current object
   const cards = props.cards.map((card) => (
     <Card
       onCardDelete={props.onCardDelete}
       onCardMove={props.onCardMove}
-      key={card.id}
+      key={card._id}
       {...card}
     />
     //added a unique key to each card (needed) to render eff
